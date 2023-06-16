@@ -1,0 +1,46 @@
+def funnel_sort(list):
+    def merge(funnel1, funnel2):
+        merged = []
+        i, j = 0, 0
+
+        while i < len(funnel1) and j < len(funnel2):
+            if funnel1[i] < funnel2[j]:
+                merged.append(funnel1[i])
+                i += 1
+            else:
+                merged.append(funnel2[j])
+                j += 1
+
+        merged.extend(funnel1[i:])
+        merged.extend(funnel2[j:])
+        return merged
+
+    def mesclar_funis(funis):
+        if len(funis) == 1:
+            return funis[0]
+
+        new_funnels = []
+        i = 0
+
+        while i < len(funis) - 1:
+            merged = merge(funis[i], funis[i + 1])
+            new_funnels.append(merged)
+            i += 2
+
+        if i == len(funis) - 1:
+            new_funnels.append(funis[i])
+
+        return mesclar_funis(new_funnels)
+
+    funis = [[x] for x in list]
+    return mesclar_funis(funis)
+
+aux = 0
+list = []
+while aux < 10:
+    num = int(input('\n digite o {} valor para a lista: \n'.format(aux+1)))
+    list.append(num)
+    aux += 1
+
+funnel_sort_lista = funnel_sort(list)
+print(funnel_sort_lista)
