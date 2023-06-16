@@ -1,0 +1,21 @@
+def StalinSort(list):
+    i = 0
+    length = len(list)
+    if length > 0:
+        aux = list[0]
+    while i < length and length > 0:
+        if aux <= list[i]:
+            aux = list[i]
+            i = i + 1
+        else:
+            del list[i]
+            length = length - 1
+aux = 0
+list = []
+while aux < 10:
+    num = int(input('\n digite o {} valor para a lista: \n'.format(aux+1)))
+    list.append(num)
+    aux += 1
+
+StalinSort(list)
+print(list)
